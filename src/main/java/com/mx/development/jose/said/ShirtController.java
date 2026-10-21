@@ -1,4 +1,4 @@
-package com.example.shirts;
+package com.mx.development.jose.said;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

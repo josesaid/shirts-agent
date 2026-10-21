@@ -1,4 +1,4 @@
-package com.example.shirts;
+package com.mx.development.jose.said;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
