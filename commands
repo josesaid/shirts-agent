@@ -1,0 +1,28 @@
+# Curl commands to test the shirts-agent API
+# Start the app first:  export OPENAI_API_KEY=sk-...  &&  mvn spring-boot:run
+# Base URL: http://localhost:8080/api/shirts/recommend
+
+# Escenario 1: playera roja (color en español, la catalog devuelve la roja)
+curl -X POST http://localhost:8080/api/shirts/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"item":"playera","color":"roja"}'
+
+# Escenario 2: shirt azul (item en inglés, color en inglés)
+curl -X POST http://localhost:8080/api/shirts/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"item":"shirt","color":"blue"}'
+
+# Escenario 3: t-shirt negra (item t-shirt, color en español)
+curl -X POST http://localhost:8080/api/shirts/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"item":"t-shirt","color":"negra"}'
+
+# Escenario 4: item no soportado -> HTTP 400 "Unsupported item: sofa" (no llama al modelo)
+curl -X POST http://localhost:8080/api/shirts/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"item":"sofa","color":"roja"}'
+
+# Escenario 5: color vacío -> HTTP 400 "Color is required" (no llama al modelo)
+curl -X POST http://localhost:8080/api/shirts/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"item":"playera","color":" "}'
