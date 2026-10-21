@@ -6,29 +6,31 @@
   <title>shirts-agent — Spring AI Shirt Agent</title>
   <meta name="description" content="Spring Boot 3.5 and Spring AI 1.1 example: an AI agent that recommends a t-shirt in a requested color through a @Tool method.">
   <style>
-    :root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --accent:#0a66c2; --border:#d0d7de; --code:#f6f8fa; }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --accent:#4493f8; --border:#30363d; --code:#161b22; }
-    }
-    :root[data-theme="dark"] { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --accent:#4493f8; --border:#30363d; --code:#161b22; }
+    :root { --bg:#03140a; --panel:#06200f; --fg:#d1fae5; --muted:#6ee7a7; --accent:#39ff14; --accent2:#7dffb2; --border:#0f5132; --code:#021a0c; }
     * { box-sizing: border-box; }
-    body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    body { margin:0; color:var(--fg); background: radial-gradient(900px 500px at 50% -10%, rgba(57,255,20,0.12), transparent 60%), var(--bg); min-height:100vh;
+      font:16px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
-    main { max-width: 880px; margin: 0 auto; padding-block: 32px 64px; }
-    h1 { font-size: 2rem; margin: 0 0 8px; }
-    h2 { font-size: 1.3rem; margin: 40px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    main { max-width: 880px; margin: 0 auto; padding-block: 40px 64px; }
+    h1 { font-size: 2.2rem; margin: 0 0 8px; color: var(--accent); text-shadow: 0 0 12px rgba(57,255,20,0.6); }
+    h1::before { content: "> "; color: var(--muted); }
+    h2 { font-size: 1.15rem; margin: 40px 0 12px; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px dashed var(--border); padding-bottom: 6px; }
+    h2::before { content: "## "; color: var(--muted); }
     p.lead { color: var(--muted); margin-top: 0; }
-    a { color: var(--accent); }
-    .badges span { display:inline-block; border:1px solid var(--border); border-radius:999px; padding:2px 10px; margin:0 6px 6px 0; font-size:.85rem; color:var(--muted); }
+    a { color: var(--accent2); }
+    a:hover { color: var(--accent); }
+    .badges span { display:inline-block; border:1px solid var(--accent); border-radius:4px; padding:2px 10px; margin:0 6px 6px 0; font-size:.8rem; color:var(--accent2); background: rgba(57,255,20,0.06); }
     .wrap { overflow-x: auto; }
-    table { width:100%; border-collapse: collapse; font-size: .95rem; }
+    table { width:100%; border-collapse: collapse; font-size: .92rem; }
     th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
-    th { color: var(--muted); font-weight:600; }
+    th { color: var(--accent); font-weight:700; }
     code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9rem; }
-    code { background: var(--code); padding: 1px 5px; border-radius: 4px; }
-    pre { background: var(--code); padding: 12px; border-radius: 6px; overflow-x:auto; max-width:100%; }
-    .cta { display:inline-block; margin: 12px 8px 0 0; padding: 8px 14px; border:1px solid var(--accent); border-radius:6px; text-decoration:none; }
-    footer { margin-top: 48px; color: var(--muted); font-size: .85rem; }
+    code { background: var(--code); padding: 1px 6px; border-radius: 4px; color: var(--accent2); }
+    pre { background: var(--code); padding: 14px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 6px; overflow-x:auto; max-width:100%; box-shadow: 0 0 20px rgba(57,255,20,0.08); }
+    pre code { background: none; padding: 0; color: var(--fg); }
+    .cta { display:inline-block; margin: 12px 10px 0 0; padding: 8px 16px; border:1px solid var(--accent); border-radius:4px; text-decoration:none; color: var(--accent); background: rgba(57,255,20,0.06); box-shadow: 0 0 14px rgba(57,255,20,0.25); }
+    .cta:hover { background: rgba(57,255,20,0.18); color: #fff; }
+    footer { margin-top: 48px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); padding-top: 14px; }
   </style>
 </head>
 <body>
