@@ -1,5 +1,7 @@
 # shirts-agent
 
+![Java: 21](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white) ![Spring_Boot: 3.5.6](https://img.shields.io/badge/Spring_Boot-3.5.6-6DB33F?logo=springboot&logoColor=white) ![Spring_AI: 1.1.8](https://img.shields.io/badge/Spring_AI-1.1.8-6DB33F) ![Model: OpenAI](https://img.shields.io/badge/Model-OpenAI-412991?logo=openai&logoColor=white)
+
 A Spring Boot and Spring AI example: an AI agent that recommends a t-shirt (*playera*) in a requested color. The model calls a `@Tool` method that searches an in-memory catalog.
 
 > Status: learning and demo project. The catalog is fake data.
